@@ -1,0 +1,15 @@
+{
+  "sourceFilePath": "//Users/kunalkaushik/Desktop/400Days_TRCL_HD_PRS_2398_16x9_240_ENG_51_NOMPAA.mov"
+, "destFilePath": "/Users/kunalkaushik/Desktop/400Days_TRCL_HD_PRS_2398_16x9_240_ENG_51_NOMPAA.mp4"
+, "status":"0"
+, "callbackUrl": "http://calback_url"
+, "createDate": "2015-10-27T05:00:00.000Z"
+, "token": "434fdsfsdasdf2wwfdvcas"
+, "profile": ""
+, "height": 1920
+, "width": 1080
+, "videoBitrate": "800000"
+, "audioBitrate": "10800"
+, "format": "mp4"
+, "priority": 1000
+}
