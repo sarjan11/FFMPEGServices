@@ -21,7 +21,7 @@ FfmpegJobController.prototype.addRecord = function (job, callback){
 
 FfmpegJobController.prototype.getJob = function (machineName,callback){
     //this.db.findSortWithCriteria({Subtitle: 1,UiCategory:1 },{machineName:"dmcplailh239",AppKeys: { $in: [appKey]},IsDeleted:false,Channels:{$in: channels},Subtitle: { $nin: ["",null]}}, function (err, doc) {
-    this.db.findSortWithCriteria({priority: -1,createDate:1 },{machineName:machineName}, function (err, doc) {
+    this.db.findSortWithCriteria({priority: -1,createDate:1 },{machineName:machineName,status:'0'}, function (err, doc) {
         if (err) callback(err);
         else callback(null,doc);
     });
@@ -29,7 +29,7 @@ FfmpegJobController.prototype.getJob = function (machineName,callback){
 
 FfmpegJobController.prototype.getAllJob = function (callback){
     //this.db.findSortWithCriteria({Subtitle: 1,UiCategory:1 },{machineName:"dmcplailh239",AppKeys: { $in: [appKey]},IsDeleted:false,Channels:{$in: channels},Subtitle: { $nin: ["",null]}}, function (err, doc) {
-    this.db.findSort({priority: -1,createDate:1 }, function (err, doc) {
+    this.db.findSortWithCriteria({priority: -1,createDate:1 }, {status:'0'},function (err, doc) {
         if (err) callback(err);
         else callback(null,doc);
     });
@@ -52,7 +52,7 @@ FfmpegJobController.prototype.updateJobStatus = function (token,status,callback)
         else callback(null, doc);
         });
     }else {
-        this.db.updateJob(token, {$set: {status: token, endDate: Date()}}, function (err, doc) {
+        this.db.updateJob(token, {$set: {status: status, endDate: Date()}}, function (err, doc) {
             if (err) callback(err);
             else callback(null, doc);
         });

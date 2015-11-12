@@ -66,12 +66,15 @@ exports.Generate = function (dbhost, dbport) {
 
     function releaseMachine(machineName){
 
-        FfmpegClusterController.releaseMachine(machineName, function (err, reserveMachine) {
+        FfmpegClusterController.releaseMachine(machineName, function (err,doc) {
 
             if (err) {
                 next(err || new Error('[ERROR] FfmpegJobController.getJob db error'));
                 return;
             }
+
+            console.log(doc);
+            doJobAssignment(machineName);
 
         });
     }
@@ -218,12 +221,12 @@ exports.Generate = function (dbhost, dbport) {
 
                 //assign job if its free.
 
-                console.log("update successfull")
+                console.log("update successfull" + status)
 
                 if(status=="2"){
                     releaseMachine(machineName);  //should we release the machine in case of error too
                     //since we have released machine assign jobs.
-                    doJobAssignment(machineName);
+
 
                 }
 

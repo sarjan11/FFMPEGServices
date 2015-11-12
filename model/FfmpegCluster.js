@@ -20,7 +20,7 @@ function FfmpegCluster(uri, collectionName){
             var FfmpegClusterSchema = new Schema({
                 machineName: String
                 , isRunning: Boolean
-                , isActive: String
+                , isActive: Boolean
                 , startDate: Date
                 , endDate: Date
 

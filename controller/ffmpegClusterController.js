@@ -21,7 +21,7 @@ FfmpegClusterController.prototype.addRecord = function (job, callback){
 FfmpegClusterController.prototype.getFreeMachine = function (callback){
     //this.db.findSortWithCriteria({Subtitle: 1,UiCategory:1 },{machineName:"dmcplailh239",AppKeys: { $in: [appKey]},IsDeleted:false,Channels:{$in: channels},Subtitle: { $nin: ["",null]}}, function (err, doc) {
     this.db.findSortWithCriteria({isActive:true,isRunning:false}, function (err, doc) {
-        if (err) callback(err);
+        if (err) callback(err,null);
         else callback(null,doc);
     });
 };
@@ -37,10 +37,12 @@ FfmpegClusterController.prototype.getFreeMachine = function (callback){
 
 FfmpegClusterController.prototype.releaseMachine = function (machineName,callback){
     //this.db.findSortWithCriteria({Subtitle: 1,UiCategory:1 },{machineName:"dmcplailh239",AppKeys: { $in: [appKey]},IsDeleted:false,Channels:{$in: channels},Subtitle: { $nin: ["",null]}}, function (err, doc) {
+         console.log('Release machine ' + machineName);
 
-        this.db.updateCluster({machineName:machineName}, {$set: {isRunning: false, endDate: new Date()}}, function (err, doc) {
+
+        this.db.updateCluster({machineName:machineName}, {$set: {isRunning: false, endDate: Date()}}, function (err, doc) {
         if (err) callback(err);
-        else callback(null, doc);
+        else callback(null,doc);
         });
 
 };
